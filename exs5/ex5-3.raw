@@ -1,0 +1,40 @@
+  0:	proc  - (:root:) creates proc  0 (TrainA)
+  0:	proc  - (:root:) creates proc  1 (TrainB)
+  0:	proc  - (:root:) creates proc  2 (:init:)
+Train B: Waiting for permission
+  1:	proc  1 (TrainB:1) ex5-3.pml:27 (state 1)	[printf('Train B: Waiting for permission\\n')]
+
+Train A: Waiting for permission
+  2:	proc  0 (TrainA:1) ex5-3.pml:10 (state 1)	[printf('Train A: Waiting for permission\\n')]
+
+  3:	proc  2 (:init::1) ex5-3.pml:36 (state 1)	[permission!1]
+  3:	proc  1 (TrainB:1) ex5-3.pml:29 (state 2)	[permission?1]
+  3:	proc  2 (:init::1) ex5-3.pml:36 (state -)	[values: 1!1]
+  3:	proc  1 (TrainB:1) ex5-3.pml:29 (state -)	[values: 1?1]
+
+Train B: Entering the railway
+  4:	proc  1 (TrainB:1) ex5-3.pml:31 (state 3)	[printf('Train B: Entering the railway\\n')]
+
+Starting TrainA with pid 3
+  5:	proc  2 (:init::1) creates proc  3 (TrainA)
+  5:	proc  2 (:init::1) ex5-3.pml:38 (state 2)	[(run TrainA())]
+
+Train A: Waiting for permission
+  6:	proc  3 (TrainA:1) ex5-3.pml:10 (state 1)	[printf('Train A: Waiting for permission\\n')]
+
+Starting TrainB with pid 4
+  7:	proc  2 (:init::1) creates proc  4 (TrainB)
+  7:	proc  2 (:init::1) ex5-3.pml:39 (state 3)	[(run TrainB())]
+
+Train B: Waiting for permission
+  8:	proc  4 (TrainB:1) ex5-3.pml:27 (state 1)	[printf('Train B: Waiting for permission\\n')]
+
+timeout
+#processes: 5
+  8:	proc  4 (TrainB:1) ex5-3.pml:29 (state 2)
+  8:	proc  3 (TrainA:1) ex5-3.pml:12 (state 2)
+  8:	proc  2 (:init::1) ex5-3.pml:40 (state 4)
+  8:	proc  1 (TrainB:1) ex5-3.pml:32 (state 4)
+  8:	proc  0 (TrainA:1) ex5-3.pml:12 (state 2)
+5 processes created
+null
