@@ -1,0 +1,20 @@
+//rules
+
+[] =>  means always
+<> =>  means eventually
+[]<> => means always eventually
+<>[] => means eventually always
+
+//Examlpes
+
+[]p => always p
+<>p => eventually p
+[]<>p => always eventually p
+<>[]p => eventually always p
+<>(cat_x > 1 || cat_y > 1) => eventually (cat_x > 1 || cat_y > 1)
+[]<>(cat_x > 1 || cat_y > 1) => always eventually (cat_x > 1 || cat_y > 1)
+[]<>cat_x > 1 || []<>cat_y > 1 => always eventually (cat_x > 1 || cat_y > 1)
+
+
+//How to use
+ltl p1 { [] (account >= 0) }
