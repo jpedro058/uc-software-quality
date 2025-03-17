@@ -133,3 +133,34 @@ active [2] proctype pz () {
     od
 }
 
+
+chan messages = [2] of {int, int, chan}
+
+active [3] proctype p51(){
+    int val1, val2;
+    chan ack = [1] of {int}
+
+    select(val1 : 1..10);
+    select(val2 : 1..10);
+
+    messages!val1,val2,ack;
+
+    ack?1;
+}
+
+active proctype server(){
+    short i;
+    chan ack;
+    for(i : i..2){
+        int msg;
+        messages?msg
+        ack!1
+        printf("message:", msg);
+    }
+}
+
+ltl check {[] (account >= 100)}
+
+ltl green{<> (green == 1)}
+ltl yellow{}
+ltl red{[] ((red == 1) -> (green == 1) )}
